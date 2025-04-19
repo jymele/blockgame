@@ -1,1 +1,1 @@
-export default function GameBoard() {}
+export default function ScoreBoard() {}

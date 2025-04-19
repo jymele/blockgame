@@ -4,3 +4,7 @@
   @apply h-8 w-8 rounded;
   background: radial-gradient(circle, #201f1f7e 0%, transparent 10%);
 }
+
+.active {
+  background: var(--color-pink-500);
+}
