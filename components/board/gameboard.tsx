@@ -1,25 +1,20 @@
 "use client";
 import { config } from "@/utils/config";
 import { Tile } from "@/types/tile";
+import { Coordinate } from "@/types/coordinate";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 type GameBoardProps = {
   block?: Tile[];
+  coord: Coordinate;
 };
 
 export default function GameBoard(props: GameBoardProps) {
-  //   const { block } = props;
+  const { block, coord } = props;
 
-  const block: Tile[] = [
-    { x: 1, y: 1, color: "red" },
-    { x: 1, y: 2, color: "blue" },
-    { x: 2, y: 1, color: "green" },
-    { x: 2, y: 2, color: "yellow" },
-  ];
-
-  const rows = [...Array(config.noOfRows).keys()].map((i) => i + 1);
-  const ys: number[] = block.map((tile) => tile.y);
+  const rows = [...Array(config.noOfRows).keys()].map((i) => i);
+  const ys: number[] | undefined = block?.map((tile) => tile.y + coord.y);
 
   return (
     <div className="game-board">
@@ -32,7 +27,11 @@ export default function GameBoard(props: GameBoardProps) {
             className="grid gap-1"
             style={{ gridTemplateColumns: `repeat(${config.noOfCols}, 1fr)` }}
           >
-            {ys.includes(index) ? <Row block={block} /> : <Row />}
+            {ys?.includes(index) ? (
+              <Row block={block} coord={coord} />
+            ) : (
+              <Row coord={coord} />
+            )}
           </div>
         ))}
       </div>
@@ -42,13 +41,14 @@ export default function GameBoard(props: GameBoardProps) {
 
 type RowProps = {
   block?: Tile[];
+  coord: Coordinate;
 };
 
 function Row(props: RowProps) {
-  const { block } = props;
+  const { block, coord } = props;
 
-  const cols = [...Array(config.noOfCols).keys()].map((i) => i + 1);
-  const xs: number[] = block ? block.map((tile) => tile.x) : [];
+  const cols = [...Array(config.noOfCols).keys()].map((i) => i);
+  const xs: number[] = block ? block.map((tile) => tile.x + coord.x) : [];
   /**
    * * This function creates a row of tiles in the game board.
    * * It uses the `config` object to determine the number of columns.
@@ -59,7 +59,7 @@ function Row(props: RowProps) {
       {cols.map((col, index) => (
         <div
           key={index}
-          className={clsx("tile", [xs.includes(index) && "active"])} // Add your tile styles here
+          className={clsx("tile", [xs?.includes(index) && "active"])} // Add your tile styles here
         ></div>
       ))}
     </>
