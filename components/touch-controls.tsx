@@ -14,10 +14,10 @@ export default function TouchControls(props: Props) {
     const interval = setInterval(() => {
       action();
     }, 50); // Adjust the interval as needed
-    document.addEventListener("mouseup", () => clearInterval(interval), {
+    document.addEventListener("touchend", () => clearInterval(interval), {
       once: true,
     });
-    document.addEventListener("mouseleave", () => clearInterval(interval), {
+    document.addEventListener("touchend", () => clearInterval(interval), {
       once: true,
     });
   };
@@ -26,7 +26,10 @@ export default function TouchControls(props: Props) {
     <div className="flex justify-center gap-4 mt-4">
       <button
         className="p-2 bg-blue-500 text-white rounded"
-        onMouseDown={() => {
+        // onMouseDown={() => {
+        //   performAction(leftTrigger);
+        // }}
+        onTouchStart={() => {
           performAction(leftTrigger);
         }}
       >
@@ -34,7 +37,7 @@ export default function TouchControls(props: Props) {
       </button>
       <button
         className="p-2 bg-blue-500 text-white rounded"
-        onMouseDown={() => {
+        onTouchStart={() => {
           performAction(rightTrigger);
         }}
       >
@@ -42,7 +45,7 @@ export default function TouchControls(props: Props) {
       </button>
       <button
         className="p-2 bg-blue-500 text-white rounded"
-        onMouseDown={() => {
+        onTouchStart={() => {
           performAction(downTrigger);
         }}
       >
@@ -50,7 +53,7 @@ export default function TouchControls(props: Props) {
       </button>
       <button
         className="p-2 bg-blue-500 text-white rounded"
-        onMouseDown={() => {
+        onTouchStart={() => {
           performAction(rotateTrigger);
         }}
       >
