@@ -2,6 +2,9 @@
 
 .tile {
   @apply h-6 w-6 rounded;
+}
+
+.tile.empty {
   background: radial-gradient(circle, #201f1f7e 0%, transparent 10%);
 }
 

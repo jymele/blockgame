@@ -1,17 +1,17 @@
 "use client";
 import { config } from "@/utils/config";
-import { Tile } from "@/types/tile";
-import { Coordinate } from "@/types/coordinate";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 type GameBoardProps = {
-  block?: Coordinate[];
-  coord: Coordinate;
+  blockShape?: number[];
+  stackedBlocks?: number[];
+  yPos?: number;
+  xPos?: number;
 };
 
 export default function GameBoard(props: GameBoardProps) {
-  const { block, coord } = props;
+  const { blockShape, yPos, xPos } = props;
 
   const tiles = [...Array(config.noOfRows * config.noOfCols).keys()].map(
     (i) => i
@@ -24,7 +24,12 @@ export default function GameBoard(props: GameBoardProps) {
         style={{ gridTemplateColumns: `repeat(${config.noOfCols}, 1fr)` }}
       >
         {tiles.map((tiles, index) => (
-          <div key={index} className={clsx("tile bg-pink-400", [])} />
+          <div
+            key={index}
+            className={clsx("tile", [
+              blockShape?.includes(index) ? "bg-pink-600" : "empty",
+            ])}
+          />
         ))}
       </div>
     </div>
