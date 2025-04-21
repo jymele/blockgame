@@ -1,8 +1,5 @@
 import { config } from "@/utils/config";
-import { oPiece } from "@/gameObjects/o";
-import { lPiece } from "@/gameObjects/l";
-
-const allBlocks = ["l", "o"];
+import { allBlocks, getBlockFromName } from "@/gameObjects/piece";
 
 export default class Block {
   private block: number[][];
@@ -12,7 +9,7 @@ export default class Block {
   public nextBlock: string;
 
   constructor() {
-    this.block = lPiece;
+    this.block = getBlockFromName("o");
     this.nextBlock = this.getRandomBlock();
   }
 
@@ -21,19 +18,8 @@ export default class Block {
     return allBlocks[randomIndex];
   }
 
-  getBlockFromName(name: string): number[][] {
-    switch (name) {
-      case "l":
-        return lPiece;
-      case "o":
-        return oPiece;
-      default:
-        throw new Error("Unknown block type");
-    }
-  }
-
   getNextBlock() {
-    this.block = this.getBlockFromName(this.nextBlock);
+    this.block = getBlockFromName(this.nextBlock);
     this.nextBlock = this.getRandomBlock();
     this.initializePosition();
   }
