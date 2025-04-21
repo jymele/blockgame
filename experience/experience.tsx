@@ -64,6 +64,9 @@ export default function Experience() {
       stack.current?.addToStack(block.current?.getShape() || []);
       stackedBlocksRef.current = stack.current!.list;
       block.current?.getNextBlock();
+
+      // Check if a line can be broken
+      stack.current?.checkIfLineCanBeBroken();
     }
   }
 
@@ -98,6 +101,7 @@ export default function Experience() {
         blockShape={blockShape}
         stackedBlocks={stackedBlocksRef.current}
       />
+      <div>Rows to break: {stack.current?.rowsToBreak.length}</div>
 
       <TouchControls
         downTrigger={downAction}
