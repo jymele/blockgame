@@ -8,15 +8,16 @@ import NextBlock from "@/components/board/nextblock";
 
 export default function Experience() {
   const [blockShape, setBlockShape] = useState<number[]>([]);
-  const [stackedBlocks, setStackedBlocks] = useState<number[]>([]);
 
   const block = useRef<Block | null>(null);
   const stack = useRef<Stack | null>(null);
   const timer = useRef<Timer | null>(null);
+  const stackedBlocksRef = useRef<number[]>([]);
 
   useEffect(() => {
     block.current = new Block();
     stack.current = new Stack();
+    stackedBlocksRef.current = [];
 
     document.addEventListener("keydown", handleKeyPress);
 
@@ -54,13 +55,16 @@ export default function Experience() {
   }
 
   function downAction() {
-    if (block.current?.checkIfCanMoveDown()) {
+    if (
+      block.current?.checkIfCanMoveDown() &&
+      block.current?.checkAgainstStackIfCanMoveDown(stackedBlocksRef.current)
+    ) {
       block.current?.goDown();
       setBlockShape(block.current?.getShape());
     } else {
       // Add the current block to the stacked blocks
       stack.current?.addToStack(block.current?.getShape() || []);
-      setStackedBlocks(stack.current?.list || []);
+      stackedBlocksRef.current = stack.current!.list;
       block.current?.getNextBlock();
     }
   }
@@ -71,7 +75,10 @@ export default function Experience() {
         <div></div>
         <NextBlock block={block.current?.nextBlock} />
       </div>
-      <GameBoard blockShape={blockShape} stackedBlocks={stackedBlocks} />
+      <GameBoard
+        blockShape={blockShape}
+        stackedBlocks={stackedBlocksRef.current}
+      />
     </>
   );
 }

@@ -25,7 +25,7 @@ export default function GameBoard(props: GameBoardProps) {
             key={index}
             className={clsx("tile", [
               blockShape?.includes(index) && "bg-pink-600",
-              stackedBlocks?.includes(index) && "bg-blue-600",
+              stackedBlocks?.includes(index) && "bg-blue-600 taken",
             ])}
           />
         ))}
