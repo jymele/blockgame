@@ -9,7 +9,7 @@ export default class Block {
   public nextBlock: string;
 
   constructor() {
-    this.block = getBlockFromName("o");
+    this.block = getBlockFromName("t");
     this.nextBlock = this.getRandomBlock();
   }
 
@@ -52,13 +52,14 @@ export default class Block {
 
   exceedsRightBoundary() {
     return this.block[this.rotation].some(
-      (block) => (block % config.noOfCols) + this.xPos >= config.noOfCols
+      (block) =>
+        Math.abs((block % config.noOfCols) + this.xPos) >= config.noOfCols
     );
   }
 
   exceedsLeftBoundary() {
     return this.block[this.rotation].some(
-      (block) => (block % config.noOfCols) + this.xPos < 0
+      (block) => Math.abs((block % config.noOfCols) + this.xPos) < 0
     );
   }
 

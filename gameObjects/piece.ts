@@ -1,6 +1,6 @@
 import { config } from "@/utils/config";
 
-const lPiece: number[][] = [
+const iPiece: number[][] = [
   [0, config.noOfCols, 2 * config.noOfCols, 3 * config.noOfCols],
   [-1, 0, 1, 2],
 ];
@@ -10,29 +10,30 @@ const oPiece: number[][] = [[0, 1, config.noOfCols, config.noOfCols + 1]];
 const tPiece: number[][] = [
   [0, 1, 2, config.noOfCols + 1],
   [0, config.noOfCols, config.noOfCols + 1, 2 * config.noOfCols],
-  [1, config.noOfCols, config.noOfCols + 1, config.noOfCols + 2],
-  [1, config.noOfCols + 1, 2 * config.noOfCols + 1, config.noOfCols],
+  [
+    config.noOfCols + 1,
+    2 * config.noOfCols,
+    2 * config.noOfCols + 1,
+    2 * config.noOfCols + 2,
+  ],
+  [2, config.noOfCols + 1, 2 * config.noOfCols + 2, config.noOfCols + 2],
 ];
 
 const zPiece: number[][] = [
   [0, 1, config.noOfCols + 1, config.noOfCols + 2],
-  [1, config.noOfCols, config.noOfCols + 1, 2 * config.noOfCols],
-  //   [0, 1, config.noOfCols + 1, config.noOfCols + 2],
-  //   [1, config.noOfCols, config.noOfCols + 1, 2 * config.noOfCols],
+  [1, config.noOfCols + 1, config.noOfCols + 2, 2 * config.noOfCols + 2],
 ];
 
 const sPiece: number[][] = [
-  [0, 1, config.noOfCols, config.noOfCols + 1],
-  [1, config.noOfCols + 1, 2 * config.noOfCols, 2 * config.noOfCols + 1],
-  //   [0, 1, config.noOfCols, config.noOfCols + 1],
-  //   [1, config.noOfCols + 1, 2 * config.noOfCols, 2 * config.noOfCols + 1],
+  [0, 1, config.noOfCols, config.noOfCols - 1],
+  [-config.noOfCols, 0, 1, 1 + config.noOfCols],
 ];
 
-const iPiece: number[][] = [
-  [0, config.noOfCols, 2 * config.noOfCols, 3 * config.noOfCols],
-  [0, 1, 2, 3],
-  [0, config.noOfCols, 2 * config.noOfCols, 3 * config.noOfCols],
-  [0, 1, 2, 3],
+const lPiece: number[][] = [
+  [-config.noOfCols, 0, config.noOfCols, config.noOfCols + 1],
+  [-1, 0, 1, 1 - config.noOfCols],
+  [-1, 0, config.noOfCols, 2 * config.noOfCols],
+  [-1, 0, 1, -1 + config.noOfCols],
 ];
 
 const jPiece: number[][] = [
