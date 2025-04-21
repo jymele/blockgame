@@ -39,19 +39,16 @@ export default function Experience() {
 
   function handleKeyPress(event: KeyboardEvent) {
     if (event.code == "ArrowLeft") {
-      block.current?.goLeft();
+      leftAction();
     }
     if (event.code == "ArrowRight") {
-      block.current?.goRight();
+      rightAction();
     }
     if (event.code == "ArrowDown") {
       downAction();
     }
     if (event.code == "Space") {
-      block.current?.rotate();
-    }
-    if (block.current) {
-      setBlockShape(block.current.getShape());
+      rotateAction();
     }
   }
 
@@ -71,14 +68,14 @@ export default function Experience() {
   }
 
   function leftAction() {
-    block.current?.goLeft();
+    block.current?.goLeft(stack.current!);
     if (block.current) {
       setBlockShape(block.current.getShape());
     }
   }
 
   function rightAction() {
-    block.current?.goRight();
+    block.current?.goRight(stack.current!);
     if (block.current) {
       setBlockShape(block.current.getShape());
     }

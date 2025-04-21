@@ -1,5 +1,6 @@
 import { config } from "@/utils/config";
 import { allBlocks, getBlockFromName } from "@/gameObjects/piece";
+import Stack from "./stack";
 
 export default class Block {
   private block: number[][];
@@ -67,20 +68,37 @@ export default class Block {
     this.yPos++;
   }
 
-  goLeft() {
-    if (this.getShape().every((block) => block % config.noOfCols > 0)) {
+  goLeft(stack: Stack) {
+    if (
+      this.getShape().every((block) => block % config.noOfCols > 0) &&
+      !this.leftTileOccupied(stack)
+    ) {
       this.xPos--;
     }
   }
+  leftTileOccupied(stack: Stack) {
+    if (this.getShape().some((block) => stack.list.includes(block - 1))) {
+      return true;
+    }
+    return false;
+  }
 
-  goRight() {
+  goRight(stack: Stack) {
     if (
       this.getShape().every(
         (block) => block % config.noOfCols < config.noOfCols - 1
-      )
+      ) &&
+      !this.rightTileOccupied(stack)
     ) {
       this.xPos++;
     }
+  }
+
+  rightTileOccupied(stack: Stack) {
+    if (this.getShape().some((block) => stack.list.includes(block + 1))) {
+      return true;
+    }
+    return false;
   }
 
   checkIfCanMoveDown() {
