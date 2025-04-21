@@ -81,13 +81,17 @@ export default class Block {
   }
 
   goLeft() {
-    if (this.xPos > 0) {
+    if (this.getShape().every((block) => block % config.noOfCols > 0)) {
       this.xPos--;
     }
   }
 
   goRight() {
-    if (this.xPos < config.noOfCols - 1) {
+    if (
+      this.getShape().every(
+        (block) => block % config.noOfCols < config.noOfCols - 1
+      )
+    ) {
       this.xPos++;
     }
   }
