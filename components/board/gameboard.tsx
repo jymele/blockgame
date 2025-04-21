@@ -1,6 +1,5 @@
 "use client";
 import { config } from "@/utils/config";
-import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 type GameBoardProps = {
@@ -11,7 +10,7 @@ type GameBoardProps = {
 };
 
 export default function GameBoard(props: GameBoardProps) {
-  const { blockShape, yPos, xPos } = props;
+  const { blockShape, stackedBlocks } = props;
 
   const tiles = [...Array(config.noOfRows * config.noOfCols).keys()].map(
     (i) => i
@@ -27,7 +26,8 @@ export default function GameBoard(props: GameBoardProps) {
           <div
             key={index}
             className={clsx("tile", [
-              blockShape?.includes(index) ? "bg-pink-600" : "empty",
+              blockShape?.includes(index) && "bg-pink-600",
+              stackedBlocks?.includes(index) && "bg-blue-600",
             ])}
           />
         ))}

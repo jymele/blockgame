@@ -1,15 +1,36 @@
 import { config } from "@/utils/config";
-// import { oPiece } from "@/gameObjects/o";
+import { oPiece } from "@/gameObjects/o";
 import { lPiece } from "@/gameObjects/l";
+
+const allBlocks = [lPiece, oPiece];
 
 export default class Block {
   private block: number[][];
   private rotation: number = 0;
   yPos: number = 0;
   xPos: number = Math.floor(config.noOfCols / 2);
+  private nextBlock: number[][];
 
   constructor() {
     this.block = lPiece;
+    this.nextBlock = this.getRandomBlock();
+  }
+
+  getRandomBlock(): number[][] {
+    const randomIndex = Math.floor(Math.random() * allBlocks.length);
+    return allBlocks[randomIndex];
+  }
+
+  getNextBlock() {
+    this.block = this.nextBlock;
+    this.nextBlock = this.getRandomBlock();
+    this.initializePosition();
+  }
+
+  initializePosition() {
+    this.xPos = Math.floor(config.noOfCols / 2);
+    this.yPos = 0;
+    this.rotation = 0;
   }
 
   getShape() {

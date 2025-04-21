@@ -1,11 +1,7 @@
 @import "tailwindcss";
 
 .tile {
-  @apply h-6 w-6 rounded;
-}
-
-.tile.empty {
-  background: radial-gradient(circle, #201f1f7e 0%, transparent 10%);
+  @apply h-6 w-6 rounded bg-radial from-[#201f1f7e] from-0% to-transparent to-10%;
 }
 
 .active {
