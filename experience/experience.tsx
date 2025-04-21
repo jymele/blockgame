@@ -7,8 +7,11 @@ import Block from "./classes/block";
 export default function Experience() {
   const [blockShape, setBlockShape] = useState<number[]>([]);
 
+  let block: Block;
+
   useEffect(() => {
-    const block = new Block();
+    block = new Block();
+    document.addEventListener("keydown", handleKeyPress);
 
     createTimer({
       loop: true,
@@ -22,7 +25,31 @@ export default function Experience() {
         setBlockShape(block.getShape());
       },
     });
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+      // Stop the timer when the component unmounts
+    };
   }, []);
+
+  function handleKeyPress(event: KeyboardEvent) {
+    console.log(event.code);
+
+    if (event.code == "ArrowLeft") {
+      block.goLeft();
+    }
+    if (event.code == "ArrowRight") {
+      block.goRight();
+    }
+    if (event.code == "ArrowDown") {
+      block.goDown();
+    }
+    if (event.code == "Space") {
+      block.rotate();
+    }
+
+    setBlockShape(block.getShape());
+  }
 
   return <GameBoard blockShape={blockShape} />;
 }

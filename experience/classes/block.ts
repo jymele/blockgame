@@ -26,6 +26,18 @@ export default class Block {
     this.yPos++;
   }
 
+  goLeft() {
+    if (this.xPos > 0) {
+      this.xPos--;
+    }
+  }
+
+  goRight() {
+    if (this.xPos < config.noOfCols - 1) {
+      this.xPos++;
+    }
+  }
+
   checkIfCanMoveDown() {
     const shape = this.getShape();
     const canMoveDown = shape.every((block) => {
