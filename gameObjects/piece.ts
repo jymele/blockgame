@@ -21,7 +21,7 @@ const tPiece: number[][] = [
 
 const zPiece: number[][] = [
   [0, 1, config.noOfCols + 1, config.noOfCols + 2],
-  [1, config.noOfCols + 1, config.noOfCols + 2, 2 * config.noOfCols + 2],
+  [1 - config.noOfCols, 1, 0, config.noOfCols],
 ];
 
 const sPiece: number[][] = [
