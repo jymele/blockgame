@@ -26,9 +26,6 @@ export default function TouchControls(props: Props) {
     <div className="flex justify-center gap-4 mt-4">
       <button
         className="p-2 bg-blue-500 text-white rounded"
-        // onMouseDown={() => {
-        //   performAction(leftTrigger);
-        // }}
         onTouchStart={() => {
           performAction(leftTrigger);
         }}

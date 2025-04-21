@@ -17,7 +17,7 @@ export default function GameBoard(props: GameBoardProps) {
   return (
     <div className="game-board">
       <div
-        className={"p-2 shadow rounded-lg gap-1 grid w-fit mx-auto"}
+        className={"p-1 md:p-2 shadow rounded-lg gap-1 grid w-fit mx-auto"}
         style={{ gridTemplateColumns: `repeat(${config.noOfCols}, 1fr)` }}
       >
         {tiles.map((tiles, index) => (
