@@ -22,9 +22,12 @@ export default class Block {
     this.rotation = (this.rotation + 1) % this.block.length;
 
     if (this.xPos > Math.floor(config.noOfCols / 2)) {
-      console.log("exceedsRightBoundary", this.exceedsRightBoundary());
       while (this.exceedsRightBoundary()) {
         this.xPos--;
+      }
+    } else {
+      while (this.exceedsLeftBoundary()) {
+        this.xPos++;
       }
     }
   }
@@ -32,6 +35,12 @@ export default class Block {
   exceedsRightBoundary() {
     return this.block[this.rotation].some(
       (block) => (block % config.noOfCols) + this.xPos >= config.noOfCols
+    );
+  }
+
+  exceedsLeftBoundary() {
+    return this.block[this.rotation].some(
+      (block) => (block % config.noOfCols) + this.xPos < 0
     );
   }
 
