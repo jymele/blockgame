@@ -1,5 +1,5 @@
 import { config } from "@/utils/config";
-import { oPiece } from "@/gameObjects/o";
+// import { oPiece } from "@/gameObjects/o";
 import { lPiece } from "@/gameObjects/l";
 
 export default class Block {
@@ -24,5 +24,14 @@ export default class Block {
 
   goDown() {
     this.yPos++;
+  }
+
+  checkIfCanMoveDown() {
+    const shape = this.getShape();
+    const canMoveDown = shape.every((block) => {
+      const y = Math.floor(block / config.noOfCols);
+      return y < config.noOfRows - 1;
+    });
+    return canMoveDown;
   }
 }

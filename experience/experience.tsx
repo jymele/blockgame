@@ -14,6 +14,10 @@ export default function Experience() {
       loop: true,
       frameRate: 1,
       onUpdate: () => {
+        if (!block.checkIfCanMoveDown()) {
+          // Block cannot move down, stop the timer
+          return false;
+        }
         block.goDown();
         setBlockShape(block.getShape());
       },
