@@ -5,6 +5,7 @@ import { createTimer, Timer } from "animejs";
 import Block from "./classes/block";
 import Stack from "./classes/stack";
 import NextBlock from "@/components/board/nextblock";
+import TouchControls from "@/components/touch-controls";
 
 export default function Experience() {
   const [blockShape, setBlockShape] = useState<number[]>([]);
@@ -69,6 +70,27 @@ export default function Experience() {
     }
   }
 
+  function leftAction() {
+    block.current?.goLeft();
+    if (block.current) {
+      setBlockShape(block.current.getShape());
+    }
+  }
+
+  function rightAction() {
+    block.current?.goRight();
+    if (block.current) {
+      setBlockShape(block.current.getShape());
+    }
+  }
+
+  function rotateAction() {
+    block.current?.rotate();
+    if (block.current) {
+      setBlockShape(block.current.getShape());
+    }
+  }
+
   return (
     <>
       <div className="flex justify-between gap-4 mx-auto ">
@@ -79,6 +101,69 @@ export default function Experience() {
         blockShape={blockShape}
         stackedBlocks={stackedBlocksRef.current}
       />
+      <div>
+        <TouchControls
+          downTrigger={downAction}
+          leftTrigger={leftAction}
+          rightTrigger={rightAction}
+          rotateTrigger={rotateAction}
+        />
+        {/* <div className="flex justify-center gap-4 mt-4">
+          <button
+            className="p-2 bg-blue-500 text-white rounded"
+            onMouseDown={() => {
+              const interval = setInterval(() => {
+                block.current?.goLeft();
+                if (block.current) {
+                  setBlockShape(block.current.getShape());
+                }
+              }, 100); // Adjust the interval as needed
+              document.addEventListener(
+                "mouseup",
+                () => clearInterval(interval),
+                { once: true }
+              );
+              document.addEventListener(
+                "mouseleave",
+                () => clearInterval(interval),
+                { once: true }
+              );
+            }}
+          >
+            Left
+          </button>
+          <button
+            className="p-2 bg-blue-500 text-white rounded"
+            onClick={() => {
+              block.current?.goRight();
+              if (block.current) {
+                setBlockShape(block.current.getShape());
+              }
+            }}
+          >
+            Right
+          </button>
+          <button
+            className="p-2 bg-blue-500 text-white rounded"
+            onClick={() => {
+              downAction();
+            }}
+          >
+            Down
+          </button>
+          <button
+            className="p-2 bg-blue-500 text-white rounded"
+            onClick={() => {
+              block.current?.rotate();
+              if (block.current) {
+                setBlockShape(block.current.getShape());
+              }
+            }}
+          >
+            Rotate
+          </button>
+        </div> */}
+      </div>
     </>
   );
 }
