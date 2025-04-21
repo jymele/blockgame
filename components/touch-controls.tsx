@@ -29,31 +29,34 @@ export default function TouchControls(props: Props) {
   };
 
   return (
-    <div className="flex justify-center gap-4 mt-4 lg:hidden">
-      <button
-        className="controls"
-        onTouchStart={() => {
-          performAction(leftTrigger);
-        }}
-      >
-        <ArrowBigLeft />
-      </button>
-      <button
-        className="controls"
-        onTouchStart={() => {
-          performAction(rightTrigger);
-        }}
-      >
-        <ArrowBigRight />
-      </button>
-      <button
-        className="controls"
-        onTouchStart={() => {
-          performAction(downTrigger);
-        }}
-      >
-        <ArrowBigDown />
-      </button>
+    <div className="flex justify-between gap-4 mt-4 lg:hidden">
+      <div className="flex justify-between gap-2">
+        <button
+          className="controls"
+          onTouchStart={() => {
+            performAction(leftTrigger);
+          }}
+        >
+          <ArrowBigLeft />
+        </button>
+        <button
+          className="controls mt-12 "
+          onTouchStart={() => {
+            performAction(downTrigger);
+          }}
+        >
+          <ArrowBigDown />
+        </button>
+        <button
+          className="controls"
+          onTouchStart={() => {
+            performAction(rightTrigger);
+          }}
+        >
+          <ArrowBigRight />
+        </button>
+      </div>
+
       <button
         className="controls"
         onTouchStart={() => {
