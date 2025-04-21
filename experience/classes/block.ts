@@ -14,7 +14,15 @@ export default class Block {
 
   getShape() {
     return this.block[this.rotation].map(
-      (block) => block + this.xPos + this.yPos
+      (block) => block + this.xPos + this.yPos * config.noOfCols
     );
+  }
+
+  rotate() {
+    this.rotation = (this.rotation + 1) % this.block.length;
+  }
+
+  goDown() {
+    this.yPos++;
   }
 }

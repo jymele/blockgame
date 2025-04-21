@@ -1,4 +1,4 @@
 export const config = {
-  noOfRows: 20,
+  noOfRows: 22,
   noOfCols: 17,
 };
