@@ -7,3 +7,7 @@
 .active {
   background: var(--color-pink-500);
 }
+
+.controls {
+  @apply transition duration-200 flex items-center justify-center h-12 w-12 rounded-full ring ring-slate-200 text-slate-500 shadow-md active:scale-95 active:bg-slate-100;
+}

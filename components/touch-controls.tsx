@@ -1,4 +1,10 @@
 // import eventEmitter from "@/utils/eventEmitter";
+import {
+  ArrowBigLeft,
+  ArrowBigRight,
+  ArrowBigDown,
+  RefreshCcw,
+} from "lucide-react";
 
 type Props = {
   downTrigger: () => void;
@@ -23,38 +29,38 @@ export default function TouchControls(props: Props) {
   };
 
   return (
-    <div className="flex justify-center gap-4 mt-4">
+    <div className="flex justify-center gap-4 mt-4 lg:hidden">
       <button
-        className="p-2 bg-blue-500 text-white rounded"
+        className="controls"
         onTouchStart={() => {
           performAction(leftTrigger);
         }}
       >
-        Left
+        <ArrowBigLeft />
       </button>
       <button
-        className="p-2 bg-blue-500 text-white rounded"
+        className="controls"
         onTouchStart={() => {
           performAction(rightTrigger);
         }}
       >
-        Right
+        <ArrowBigRight />
       </button>
       <button
-        className="p-2 bg-blue-500 text-white rounded"
+        className="controls"
         onTouchStart={() => {
           performAction(downTrigger);
         }}
       >
-        Down
+        <ArrowBigDown />
       </button>
       <button
-        className="p-2 bg-blue-500 text-white rounded"
+        className="controls"
         onTouchStart={() => {
           performAction(rotateTrigger);
         }}
       >
-        Rotate
+        <RefreshCcw />
       </button>
     </div>
   );
