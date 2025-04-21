@@ -1,34 +1,36 @@
 "use client";
 import GameBoard from "@/components/board/gameboard";
-import { useEffect, useState } from "react";
-import { createTimer } from "animejs";
+import { useEffect, useState, useRef } from "react";
+import { createTimer, Timer } from "animejs";
 import Block from "./classes/block";
 
 export default function Experience() {
   const [blockShape, setBlockShape] = useState<number[]>([]);
 
-  let block: Block;
+  const block = useRef<Block | null>(null);
+  const timer = useRef<Timer | null>(null);
 
   useEffect(() => {
-    block = new Block();
+    block.current = new Block();
     document.addEventListener("keydown", handleKeyPress);
 
-    createTimer({
+    timer.current = createTimer({
       loop: true,
       frameRate: 1,
       onUpdate: () => {
-        if (!block.checkIfCanMoveDown()) {
+        if (!block.current?.checkIfCanMoveDown()) {
           // Block cannot move down, stop the timer
           return false;
         }
-        block.goDown();
-        setBlockShape(block.getShape());
+        block.current?.goDown();
+        setBlockShape(block.current?.getShape());
       },
     });
 
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
       // Stop the timer when the component unmounts
+      timer.current?.pause();
     };
   }, []);
 
@@ -36,19 +38,20 @@ export default function Experience() {
     console.log(event.code);
 
     if (event.code == "ArrowLeft") {
-      block.goLeft();
+      block.current?.goLeft();
     }
     if (event.code == "ArrowRight") {
-      block.goRight();
+      block.current?.goRight();
     }
     if (event.code == "ArrowDown") {
-      block.goDown();
+      block.current?.goDown();
     }
     if (event.code == "Space") {
-      block.rotate();
+      block.current?.rotate();
     }
-
-    setBlockShape(block.getShape());
+    if (block.current) {
+      setBlockShape(block.current.getShape());
+    }
   }
 
   return <GameBoard blockShape={blockShape} />;
