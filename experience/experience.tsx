@@ -71,8 +71,8 @@ export default function Experience() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4">
-        <div></div>
+      <div className="flex justify-between gap-4 mx-auto ">
+        <div>Score</div>
         <NextBlock block={block.current?.nextBlock} />
       </div>
       <GameBoard

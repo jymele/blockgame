@@ -16,13 +16,13 @@ export default function NextBlock(props: NextBlockProps) {
   }, [block]);
 
   return (
-    <>
+    <div>
       <div className="grid grid-cols-4 w-fit rounded shadow p-2">
         {numbers.map((number) => (
           <div key={number} className="tile"></div>
         ))}
       </div>
       Next Block: {block}
-    </>
+    </div>
   );
 }
