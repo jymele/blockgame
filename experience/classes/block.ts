@@ -89,4 +89,12 @@ export default class Block {
     });
     return canMoveDown;
   }
+
+  checkAgainstStackIfCanMoveDown(stackedBlocks: number[]) {
+    const shape = this.getShape();
+    const canMoveDown = shape.every((block) => {
+      return !stackedBlocks.includes(block + config.noOfCols);
+    });
+    return canMoveDown;
+  }
 }

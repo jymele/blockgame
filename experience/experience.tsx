@@ -23,16 +23,7 @@ export default function Experience() {
       loop: true,
       frameRate: 1,
       onUpdate: () => {
-        if (!block.current?.checkIfCanMoveDown()) {
-          // Add the current block to the stacked blocks
-          stack.current?.addToStack(block.current?.getShape() || []);
-          setStackedBlocks(stack.current?.list || []);
-          block.current?.getNextBlock();
-          console.log(stackedBlocks);
-          return false;
-        }
-        block.current?.goDown();
-        setBlockShape(block.current?.getShape());
+        downAction();
       },
     });
 
@@ -51,9 +42,7 @@ export default function Experience() {
       block.current?.goRight();
     }
     if (event.code == "ArrowDown") {
-      if (block.current?.checkIfCanMoveDown()) {
-        block.current?.goDown();
-      }
+      downAction();
     }
     if (event.code == "Space") {
       block.current?.rotate();
@@ -63,5 +52,21 @@ export default function Experience() {
     }
   }
 
-  return <GameBoard blockShape={blockShape} stackedBlocks={stackedBlocks} />;
+  function downAction() {
+    if (block.current?.checkIfCanMoveDown()) {
+      block.current?.goDown();
+      setBlockShape(block.current?.getShape());
+    } else {
+      // Add the current block to the stacked blocks
+      stack.current?.addToStack(block.current?.getShape() || []);
+      setStackedBlocks(stack.current?.list || []);
+      block.current?.getNextBlock();
+    }
+  }
+
+  return (
+    <>
+      <GameBoard blockShape={blockShape} stackedBlocks={stackedBlocks} />
+    </>
+  );
 }
