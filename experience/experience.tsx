@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { createTimer, Timer } from "animejs";
 import Block from "./classes/block";
 import Stack from "./classes/stack";
+import NextBlock from "@/components/board/nextblock";
 
 export default function Experience() {
   const [blockShape, setBlockShape] = useState<number[]>([]);
@@ -66,6 +67,10 @@ export default function Experience() {
 
   return (
     <>
+      <div className="grid grid-cols-2 gap-4">
+        <div></div>
+        <NextBlock block={block.current?.nextBlock} />
+      </div>
       <GameBoard blockShape={blockShape} stackedBlocks={stackedBlocks} />
     </>
   );

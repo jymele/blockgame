@@ -5,8 +5,6 @@ import clsx from "clsx";
 type GameBoardProps = {
   blockShape?: number[];
   stackedBlocks?: number[];
-  yPos?: number;
-  xPos?: number;
 };
 
 export default function GameBoard(props: GameBoardProps) {
