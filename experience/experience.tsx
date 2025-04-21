@@ -35,8 +35,6 @@ export default function Experience() {
   }, []);
 
   function handleKeyPress(event: KeyboardEvent) {
-    console.log(event.code);
-
     if (event.code == "ArrowLeft") {
       block.current?.goLeft();
     }

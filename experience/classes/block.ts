@@ -20,6 +20,19 @@ export default class Block {
 
   rotate() {
     this.rotation = (this.rotation + 1) % this.block.length;
+
+    if (this.xPos > Math.floor(config.noOfCols / 2)) {
+      console.log("exceedsRightBoundary", this.exceedsRightBoundary());
+      while (this.exceedsRightBoundary()) {
+        this.xPos--;
+      }
+    }
+  }
+
+  exceedsRightBoundary() {
+    return this.block[this.rotation].some(
+      (block) => (block % config.noOfCols) + this.xPos >= config.noOfCols
+    );
   }
 
   goDown() {
