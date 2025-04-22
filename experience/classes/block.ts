@@ -5,7 +5,7 @@ import Stack from "./stack";
 export default class Block {
   private block: number[][];
   private rotation: number = 0;
-  yPos: number = 0;
+  yPos: number = -1;
   xPos: number = Math.floor(config.noOfCols / 2);
   public nextBlock: string;
 
@@ -27,7 +27,7 @@ export default class Block {
 
   initializePosition() {
     this.xPos = Math.floor(config.noOfCols / 2);
-    this.yPos = 0;
+    this.yPos = -1;
     this.rotation = 0;
   }
 

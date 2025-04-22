@@ -67,6 +67,11 @@ export default function Experience() {
 
       // Check if a line can be broken
       stack.current?.checkIfLineCanBeBroken();
+
+      if (stack.current?.rowsToBreak.length) {
+        stack.current?.breakLines();
+        stackedBlocksRef.current = stack.current!.list;
+      }
     }
   }
 
