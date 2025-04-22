@@ -10,7 +10,7 @@ export default class Block {
   public nextBlock: string;
 
   constructor() {
-    this.block = getBlockFromName("z");
+    this.block = getBlockFromName("l");
     this.nextBlock = this.getRandomBlock();
   }
 
