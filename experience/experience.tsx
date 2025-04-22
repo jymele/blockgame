@@ -6,9 +6,11 @@ import Block from "./classes/block";
 import Stack from "./classes/stack";
 import NextBlock from "@/components/board/nextblock";
 import TouchControls from "@/components/touch-controls";
+import ScoreBoard from "@/components/score/scoreboard";
 
 export default function Experience() {
   const [blockShape, setBlockShape] = useState<number[]>([]);
+  const [linesbroken, setLinesBroken] = useState(0);
 
   const block = useRef<Block | null>(null);
   const stack = useRef<Stack | null>(null);
@@ -59,6 +61,10 @@ export default function Experience() {
     ) {
       block.current?.goDown();
       setBlockShape(block.current?.getShape());
+
+      // send the 0 line value to the score. This way, if thesame number of lines is broken a second time, it will actually update the score
+
+      setLinesBroken(0);
     } else {
       // Add the current block to the stacked blocks
       stack.current?.addToStack(block.current?.getShape() || []);
@@ -69,6 +75,10 @@ export default function Experience() {
       stack.current?.checkIfLineCanBeBroken();
 
       if (stack.current?.rowsToBreak.length) {
+        // Let the score component know how many rows were broken at once
+        setLinesBroken(stack.current.rowsToBreak.length);
+
+        // Break the lines
         stack.current?.breakLines();
         stackedBlocksRef.current = stack.current!.list;
       }
@@ -99,7 +109,7 @@ export default function Experience() {
   return (
     <>
       <div className="flex justify-between gap-4 mx-auto ">
-        <div>Score</div>
+        <ScoreBoard linesBroken={linesbroken} />
         <NextBlock block={block.current?.nextBlock} />
       </div>
       <GameBoard
