@@ -31,10 +31,17 @@ export default class Stack {
   }
 
   breakLines() {
-    this.rowsToBreak.forEach((row) => {
+    for (const row of this.rowsToBreak) {
       const tilesInRow = this.getAllTilesInRow(row);
       this.list = this.list.filter((tile) => !tilesInRow.includes(tile));
-    });
+      this.reorganizeStack(row);
+    }
     this.rowsToBreak = [];
+  }
+
+  reorganizeStack(rowbroken: number) {
+    this.list = this.list.map((tile) => {
+      return tile < rowbroken * config.noOfCols ? tile + config.noOfCols : tile;
+    });
   }
 }
