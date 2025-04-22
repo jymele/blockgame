@@ -87,16 +87,14 @@ export default function Experience() {
 
   function leftAction() {
     block.current?.goLeft(stack.current!);
-    if (block.current) {
-      setBlockShape(block.current.getShape());
-    }
+
+    setBlockShape(block.current!.getShape());
   }
 
   function rightAction() {
     block.current?.goRight(stack.current!);
-    if (block.current) {
-      setBlockShape(block.current.getShape());
-    }
+
+    setBlockShape(block.current!.getShape());
   }
 
   function rotateAction() {
