@@ -12,8 +12,7 @@ export default function ScoreBoard(props: ScoreBoardProps) {
   useEffect(() => {
     // Calculate score based on lines broken
     const calculateScore = (lines: number) => {
-      // Example scoring logic: 100 points per line broken
-      return lines * 100;
+      return lines > 1 ? 125 * lines : lines * 100;
     };
 
     setScore((prev) => prev + calculateScore(linesBroken));
