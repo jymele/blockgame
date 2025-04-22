@@ -108,7 +108,7 @@ export default function Experience() {
 
   return (
     <>
-      <div className="flex justify-between gap-4 mx-auto ">
+      <div className="flex justify-between gap-4 mx-auto relative mb-2">
         <ScoreBoard linesBroken={linesbroken} />
         <NextBlock block={block.current?.nextBlock} />
       </div>
@@ -116,7 +116,6 @@ export default function Experience() {
         blockShape={blockShape}
         stackedBlocks={stackedBlocksRef.current}
       />
-      <div>Rows to break: {stack.current?.rowsToBreak.length}</div>
 
       <TouchControls
         downTrigger={downAction}

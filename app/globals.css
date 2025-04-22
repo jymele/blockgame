@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  @apply bg-slate-50 text-slate-900;
+}
+
 .tile {
   @apply h-4 w-4 md:h-6 md:w-6 rounded bg-radial from-[#201f1f7e] from-0% to-transparent to-10%;
 }
