@@ -16,10 +16,10 @@ type Props = {
 export default function TouchControls(props: Props) {
   const { downTrigger, leftTrigger, rightTrigger, rotateTrigger } = props;
 
-  const performAction = (action: () => void, fps: number) => {
+  const performAction = (action: () => void) => {
     const interval = setInterval(() => {
       action();
-    }, fps); // Adjust the interval as needed
+    }, 80); // Adjust the interval as needed
     document.addEventListener("touchend", () => clearInterval(interval), {
       once: true,
     });
@@ -34,7 +34,7 @@ export default function TouchControls(props: Props) {
         <button
           className="controls"
           onTouchStart={() => {
-            performAction(leftTrigger, 80);
+            performAction(leftTrigger);
           }}
         >
           <ArrowBigLeft />
@@ -42,7 +42,7 @@ export default function TouchControls(props: Props) {
         <button
           className="controls mt-12 "
           onTouchStart={() => {
-            performAction(downTrigger, 80);
+            performAction(downTrigger);
           }}
         >
           <ArrowBigDown />
@@ -50,7 +50,7 @@ export default function TouchControls(props: Props) {
         <button
           className="controls"
           onTouchStart={() => {
-            performAction(rightTrigger, 80);
+            performAction(rightTrigger);
           }}
         >
           <ArrowBigRight />
@@ -60,7 +60,7 @@ export default function TouchControls(props: Props) {
       <button
         className="controls"
         onTouchStart={() => {
-          performAction(rotateTrigger, 150);
+          performAction(rotateTrigger);
         }}
       >
         <RefreshCcw />
