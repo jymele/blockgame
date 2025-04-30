@@ -15,3 +15,7 @@ body {
 .controls {
   @apply transition duration-200 flex items-center justify-center h-16 w-16 rounded-full ring ring-slate-200 text-slate-500 shadow-md active:scale-95 active:bg-slate-100;
 }
+
+.tile.gameover {
+  @apply bg-red-500;
+}

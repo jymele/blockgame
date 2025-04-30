@@ -1,7 +1,7 @@
 "use client";
 import GameBoard from "@/components/board/gameboard";
 import { useEffect, useState, useRef } from "react";
-import { createTimer, Timer } from "animejs";
+import { createTimer, Timer, animate } from "animejs";
 import Block from "./classes/block";
 import Stack from "./classes/stack";
 import NextBlock from "@/components/board/nextblock";
@@ -67,8 +67,17 @@ export default function Experience() {
       setLinesBroken(0);
     } else if (block.current?.checkIfBlockCannotBeAdded(stack.current!.list)) {
       // Handle game over
-      alert("Game Over!");
+
       timer.current?.pause();
+
+      animate(".tile", {
+        backgroundColor: { to: "#ff0000", duration: 200 },
+        delay: (_, i) => i * 10,
+        onComplete: () => {
+          // Redirect to the game over page with the score
+          window.location.href = `/gameover/${linesbroken}`;
+        },
+      });
     } else {
       // Add the current block to the stacked blocks
       stack.current?.addToStack(block.current?.getShape() || []);
