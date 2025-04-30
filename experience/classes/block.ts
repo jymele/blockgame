@@ -118,4 +118,20 @@ export default class Block {
     });
     return canMoveDown;
   }
+
+  checkIfBlockCannotBeAdded(stackedBlocks: number[]): boolean {
+    const canMoveDown = this.checkAgainstStackIfCanMoveDown(stackedBlocks);
+
+    const shape = this.getShape();
+
+    const isAtTop = shape.some((block) => {
+      return block < 0;
+    });
+
+    if (isAtTop && !canMoveDown) {
+      return true;
+    }
+
+    return false;
+  }
 }

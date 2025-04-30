@@ -65,6 +65,10 @@ export default function Experience() {
       // send the 0 line value to the score. This way, if thesame number of lines is broken a second time, it will actually update the score
 
       setLinesBroken(0);
+    } else if (block.current?.checkIfBlockCannotBeAdded(stack.current!.list)) {
+      // Handle game over
+      alert("Game Over!");
+      timer.current?.pause();
     } else {
       // Add the current block to the stacked blocks
       stack.current?.addToStack(block.current?.getShape() || []);
