@@ -1,12 +1,12 @@
 "use client";
-import GameBoard from "@/components/board/gameboard";
+import GameBoard from "@/game-components/board/gameboard";
 import { useEffect, useState, useRef } from "react";
 import { createTimer, Timer, animate } from "animejs";
 import Block from "./classes/block";
 import Stack from "./classes/stack";
-import NextBlock from "@/components/board/nextblock";
-import TouchControls from "@/components/touch-controls";
-import ScoreBoard from "@/components/score/scoreboard";
+import NextBlock from "@/game-components/board/nextblock";
+import TouchControls from "@/game-components/touch-controls";
+import ScoreBoard from "@/game-components/score/scoreboard";
 
 export default function Experience() {
   const [blockShape, setBlockShape] = useState<number[]>([]);
