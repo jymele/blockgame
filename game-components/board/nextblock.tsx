@@ -14,8 +14,8 @@ const iDisplay: number[] = [0, 1, 2, 3];
 const tDisplay: number[] = [1, columns, columns + 1, columns + 2];
 const lDisplay: number[] = [columns, columns + 1, columns + 2, 2];
 const jDisplay: number[] = [0, columns, columns + 1, columns + 2];
-const sDisplay: number[] = [1, columns, columns + 1, columns + 2];
-const zDisplay: number[] = [0, columns, columns + 1, columns + 2];
+const sDisplay: number[] = [1, 2, columns, columns + 1];
+const zDisplay: number[] = [0, 1, columns + 1, columns + 2];
 
 export default function NextBlock(props: NextBlockProps) {
   const { block } = props;
