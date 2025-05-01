@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Block Game",
-  description: "Programmed with typeScript and Next.js",
+  description: "Block Game Prototype with Typescript",
 };
 
 export default function RootLayout({
