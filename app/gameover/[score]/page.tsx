@@ -1,6 +1,10 @@
 import ScoreDisplay from "./display";
 
-export default async function Page({ params }: { params: { score: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ score: string }>;
+}) {
   const { score } = await params;
 
   return (
