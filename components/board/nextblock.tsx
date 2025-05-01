@@ -17,9 +17,9 @@ export default function NextBlock(props: NextBlockProps) {
 
   return (
     <div>
-      <div className="grid grid-cols-4 w-fit rounded shadow p-2">
+      <div className="grid bg-white grid-cols-4 w-fit rounded shadow p-2">
         {numbers.map((number) => (
-          <div key={number} className="tile"></div>
+          <div key={number} className="next-tile"></div>
         ))}
       </div>
       Next Block: {block}

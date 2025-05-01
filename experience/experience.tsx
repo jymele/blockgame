@@ -71,7 +71,7 @@ export default function Experience() {
       timer.current?.pause();
 
       animate(".tile", {
-        backgroundColor: { to: "#ff0000", duration: 200 },
+        background: { to: "#ff0000", duration: 200 },
         delay: (_, i) => i * 10,
         onComplete: () => {
           // Redirect to the game over page with the score

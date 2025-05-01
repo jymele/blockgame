@@ -4,7 +4,8 @@ body {
   @apply bg-slate-50 text-slate-900;
 }
 
-.tile {
+.tile,
+.next-tile {
   @apply h-4 w-4 md:h-6 md:w-6 rounded bg-radial from-[#201f1f7e] from-0% to-transparent to-10%;
 }
 
@@ -14,8 +15,4 @@ body {
 
 .controls {
   @apply transition duration-200 flex items-center justify-center h-16 w-16 rounded-full ring ring-slate-200 text-slate-500 shadow-md active:scale-95 active:bg-slate-100;
-}
-
-.tile.gameover {
-  @apply bg-red-500;
 }
